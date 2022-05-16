@@ -52,3 +52,14 @@ sync
 sudo reboot
 ~/build-flightaware-4SBCs/startpiaware
 sudo piaware-status  ( do this line serveral times till dump1090 and piaware are connected )
+
+When everything is ok and ready to capture data that you sent to flightaware:
+
+nc 127.0.0.1 30003 | egrep --line-buffered 'MSG,1,|MSG,3,|MSG,5,' >> flight_tracks.csv
+
+After a few minutes, CTRL-C to stop caturing.
+vi flight_tracks.csv
+It has aircraft's info, date, time, GPS position etc.
+
+~/build-flightaware-4SBCs/flightdata.py
+
