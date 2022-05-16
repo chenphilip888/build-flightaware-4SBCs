@@ -30,16 +30,7 @@ Steps to build flightaware:
 
 2. git clone https://github.com/chenphilip888/build-flightaware-4SBCs.git
 
-3. cd ~/build-flightaware-4SBCs/rpi4b
-   make all
-
-4. cd ~/build-flightaware-4SBCs/radxa
-   make all
-
-5. cd ~/build-flightaware-4SBCs/rk3328
-   make all
-
-6. cd ~/build-flightaware-4SBCs/tinker
+3. cd ~/build-flightaware-4SBCs/rpi4b ( or radxa, rk3328, tinker )
    make all
 
 Change feeder-id on the last line of ~/build-flightaware-4SBCs/piaware.conf or comment out for the first time.
@@ -51,7 +42,7 @@ sudo cp ~/build-flightaware-4SBCs/piaware.conf /etc
 sync
 sudo reboot
 ~/build-flightaware-4SBCs/startpiaware
-sudo piaware-status  ( do this line serveral times till dump1090 and piaware are connected )
+sudo piaware-status  ( run sudo piaware-status serveral times till dump1090 and piaware are connected )
 
 When everything is ok and ready to capture data that you sent to flightaware:
 
