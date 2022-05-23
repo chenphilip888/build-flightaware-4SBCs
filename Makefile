@@ -1,4 +1,11 @@
 export DIR = ${PWD}
+ARCH := $(shell dpkg --print-architecture)
+CODE_NAME := $(shell lsb_release -cs)
+ifeq (${CODE_NAME},buster)
+	SUB = "~bpo10+1"
+else
+	SUB = ""
+endif
 
 all: tcltls piaware dump1090
 
@@ -8,31 +15,30 @@ tcltls:
 	sudo apt-get install -y libdistro-info-perl; \
 	git clone http://github.com/flightaware/tcltls-rebuild.git
 	cd ${DIR}/tcltls-rebuild; \
-	sudo ${DIR}/tcltls-rebuild/prepare-build.sh buster
-	cd ${DIR}/tcltls-rebuild/package-buster; \
+	sudo ${DIR}/tcltls-rebuild/prepare-build.sh ${CODE_NAME}
+	cd ${DIR}/tcltls-rebuild/package-${CODE_NAME}; \
 	sudo dpkg-buildpackage -b --no-sign
 	cd ${DIR}/tcltls-rebuild; \
-	sudo dpkg -i tcl-tls_1.7.22-2+fa1~bpo10+1_arm64.deb
+	sudo dpkg -i tcl-tls_1.7.22-2+fa1${SUB}_${ARCH}.deb
 
 piaware:
 	cd ${DIR}; \
 	sudo \rm -rf piaware_builder; \
 	git clone https://github.com/flightaware/piaware_builder.git
 	cd ${DIR}/piaware_builder; \
-	sudo ${DIR}/piaware_builder/sensible-build.sh buster
-	cd ${DIR}/piaware_builder/package-buster; \
+	sudo ${DIR}/piaware_builder/sensible-build.sh ${CODE_NAME}
+	cd ${DIR}/piaware_builder/package-${CODE_NAME}; \
 	sudo dpkg-buildpackage -b --no-sign
 	cd ${DIR}/piaware_builder; \
-	sudo dpkg -i piaware_7.2~bpo10+1_arm64.deb
+	sudo dpkg -i piaware_7.2${SUB}_${ARCH}.deb
 
 dump1090:
 	cd ${DIR}; \
 	sudo \rm -rf dump1090-fa; \
 	git clone https://github.com/flightaware/dump1090 dump1090-fa
 	cd ${DIR}/dump1090-fa; \
-	sudo ${DIR}/dump1090-fa/prepare-build.sh buster
-	cd ${DIR}/dump1090-fa/package-buster; \
+	sudo ${DIR}/dump1090-fa/prepare-build.sh ${CODE_NAME}
+	cd ${DIR}/dump1090-fa/package-${CODE_NAME}; \
 	sudo dpkg-buildpackage -b --no-sign
 	cd ${DIR}/dump1090-fa; \
-	sudo dpkg -i dump1090-fa_7.2~bpo10+1_arm64.deb
-
+	sudo dpkg -i dump1090-fa_7.2${SUB}_${ARCH}.deb

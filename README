@@ -30,7 +30,7 @@ Steps to build flightaware:
 
 2. git clone https://github.com/chenphilip888/build-flightaware-4SBCs.git
 
-3. cd ~/build-flightaware-4SBCs/rpi4b ( or radxa, rk3328, tinker, depends on SBC )
+3. cd ~/build-flightaware-4SBCs
    make all
 
 Change feeder-id on the last line of ~/build-flightaware-4SBCs/piaware.conf or comment out for the first time.
