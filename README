@@ -11,9 +11,11 @@ Parts required:
 
 Steps to build flightaware:
 
-1. Build debian-buster sdcard images:
+1. Build debian-buster or debian-bullseye sdcard images:
    git clone https://github.com/chenphilip888/build-debian-4SBCs.git
    follow ~/build-debian-4SBCs/README to build debian-buster sdcard images.
+   git clone https://github.com/chenphilip888/build-debian-bullseye.git
+   follow ~/build-debian-bullseye/README to build debian-bullseye sdcard images.
 
    plugin sdcard to SBC
    login:
